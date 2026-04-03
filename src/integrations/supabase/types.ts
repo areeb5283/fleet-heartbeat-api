@@ -52,6 +52,115 @@ export type Database = {
           },
         ]
       }
+      breakdowns: {
+        Row: {
+          causes: string[] | null
+          contact_info: string | null
+          created_at: string
+          description: string | null
+          dispatched_to: string | null
+          id: string
+          latitude: number | null
+          longitude: number | null
+          precautions: string[] | null
+          status: string
+          type: string
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          causes?: string[] | null
+          contact_info?: string | null
+          created_at?: string
+          description?: string | null
+          dispatched_to?: string | null
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          precautions?: string[] | null
+          status?: string
+          type?: string
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          causes?: string[] | null
+          contact_info?: string | null
+          created_at?: string
+          description?: string | null
+          dispatched_to?: string | null
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          precautions?: string[] | null
+          status?: string
+          type?: string
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "breakdowns_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      maintenance_records: {
+        Row: {
+          ai_recommendation: string | null
+          category: string
+          condition: string
+          created_at: string
+          id: string
+          last_serviced: string | null
+          next_service_due: string | null
+          notes: string | null
+          part_name: string
+          predicted_failure_date: string | null
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          ai_recommendation?: string | null
+          category?: string
+          condition?: string
+          created_at?: string
+          id?: string
+          last_serviced?: string | null
+          next_service_due?: string | null
+          notes?: string | null
+          part_name: string
+          predicted_failure_date?: string | null
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          ai_recommendation?: string | null
+          category?: string
+          condition?: string
+          created_at?: string
+          id?: string
+          last_serviced?: string | null
+          next_service_due?: string | null
+          notes?: string | null
+          part_name?: string
+          predicted_failure_date?: string | null
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "maintenance_records_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       telematics_data: {
         Row: {
           created_at: string
