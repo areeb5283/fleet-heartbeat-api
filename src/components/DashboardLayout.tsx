@@ -7,6 +7,7 @@ import {
   Route as RouteIcon,
   Bell,
   BarChart3,
+  Wrench,
   LogOut,
   Menu,
   X,
