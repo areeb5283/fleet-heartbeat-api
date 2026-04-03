@@ -7,6 +7,7 @@ import {
   Route as RouteIcon,
   Bell,
   BarChart3,
+  Wrench,
   LogOut,
   Menu,
   X,
@@ -20,6 +21,7 @@ const navItems = [
   { to: "/dashboard/tracking", label: "Live Tracking", icon: MapPin },
   { to: "/dashboard/trips", label: "Trips", icon: RouteIcon },
   { to: "/dashboard/alerts", label: "Alerts", icon: Bell },
+  { to: "/dashboard/maintenance", label: "Maintenance", icon: Wrench },
   { to: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
 

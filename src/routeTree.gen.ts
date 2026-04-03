@@ -17,6 +17,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardVehiclesRouteImport } from './routes/dashboard.vehicles'
 import { Route as DashboardTripsRouteImport } from './routes/dashboard.trips'
 import { Route as DashboardTrackingRouteImport } from './routes/dashboard.tracking'
+import { Route as DashboardMaintenanceRouteImport } from './routes/dashboard.maintenance'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 
@@ -60,6 +61,11 @@ const DashboardTrackingRoute = DashboardTrackingRouteImport.update({
   path: '/tracking',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardMaintenanceRoute = DashboardMaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/maintenance': typeof DashboardMaintenanceRoute
   '/dashboard/tracking': typeof DashboardTrackingRoute
   '/dashboard/trips': typeof DashboardTripsRoute
   '/dashboard/vehicles': typeof DashboardVehiclesRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/maintenance': typeof DashboardMaintenanceRoute
   '/dashboard/tracking': typeof DashboardTrackingRoute
   '/dashboard/trips': typeof DashboardTripsRoute
   '/dashboard/vehicles': typeof DashboardVehiclesRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/maintenance': typeof DashboardMaintenanceRoute
   '/dashboard/tracking': typeof DashboardTrackingRoute
   '/dashboard/trips': typeof DashboardTripsRoute
   '/dashboard/vehicles': typeof DashboardVehiclesRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard/alerts'
     | '/dashboard/analytics'
+    | '/dashboard/maintenance'
     | '/dashboard/tracking'
     | '/dashboard/trips'
     | '/dashboard/vehicles'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard/alerts'
     | '/dashboard/analytics'
+    | '/dashboard/maintenance'
     | '/dashboard/tracking'
     | '/dashboard/trips'
     | '/dashboard/vehicles'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard/alerts'
     | '/dashboard/analytics'
+    | '/dashboard/maintenance'
     | '/dashboard/tracking'
     | '/dashboard/trips'
     | '/dashboard/vehicles'
@@ -210,6 +222,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTrackingRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/maintenance': {
+      id: '/dashboard/maintenance'
+      path: '/maintenance'
+      fullPath: '/dashboard/maintenance'
+      preLoaderRoute: typeof DashboardMaintenanceRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/analytics': {
       id: '/dashboard/analytics'
       path: '/analytics'
@@ -230,6 +249,7 @@ declare module '@tanstack/react-router' {
 interface DashboardRouteChildren {
   DashboardAlertsRoute: typeof DashboardAlertsRoute
   DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
+  DashboardMaintenanceRoute: typeof DashboardMaintenanceRoute
   DashboardTrackingRoute: typeof DashboardTrackingRoute
   DashboardTripsRoute: typeof DashboardTripsRoute
   DashboardVehiclesRoute: typeof DashboardVehiclesRoute
@@ -239,6 +259,7 @@ interface DashboardRouteChildren {
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAlertsRoute: DashboardAlertsRoute,
   DashboardAnalyticsRoute: DashboardAnalyticsRoute,
+  DashboardMaintenanceRoute: DashboardMaintenanceRoute,
   DashboardTrackingRoute: DashboardTrackingRoute,
   DashboardTripsRoute: DashboardTripsRoute,
   DashboardVehiclesRoute: DashboardVehiclesRoute,
