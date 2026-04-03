@@ -14,16 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          acknowledged: boolean
+          created_at: string
+          id: string
+          message: string
+          severity: string
+          type: string
+          vehicle_id: string
+        }
+        Insert: {
+          acknowledged?: boolean
+          created_at?: string
+          id?: string
+          message: string
+          severity?: string
+          type: string
+          vehicle_id: string
+        }
+        Update: {
+          acknowledged?: boolean
+          created_at?: string
+          id?: string
+          message?: string
+          severity?: string
+          type?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      telematics_data: {
+        Row: {
+          created_at: string
+          engine_temp: number
+          fuel_level: number
+          id: string
+          latitude: number | null
+          longitude: number | null
+          recorded_at: string
+          rpm: number
+          speed: number
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          engine_temp?: number
+          fuel_level?: number
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          recorded_at?: string
+          rpm?: number
+          speed?: number
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          engine_temp?: number
+          fuel_level?: number
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          recorded_at?: string
+          rpm?: number
+          speed?: number
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "telematics_data_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trips: {
+        Row: {
+          avg_speed: number | null
+          created_at: string
+          distance: number | null
+          end_time: string | null
+          id: string
+          start_time: string
+          status: string
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          avg_speed?: number | null
+          created_at?: string
+          distance?: number | null
+          end_time?: string | null
+          id?: string
+          start_time?: string
+          status?: string
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          avg_speed?: number | null
+          created_at?: string
+          distance?: number | null
+          end_time?: string | null
+          id?: string
+          start_time?: string
+          status?: string
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trips_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vehicles: {
+        Row: {
+          created_at: string
+          fuel_type: string
+          id: string
+          manufacturer: string
+          model: string
+          owner: string
+          updated_at: string
+          year: number
+        }
+        Insert: {
+          created_at?: string
+          fuel_type?: string
+          id?: string
+          manufacturer: string
+          model: string
+          owner: string
+          updated_at?: string
+          year: number
+        }
+        Update: {
+          created_at?: string
+          fuel_type?: string
+          id?: string
+          manufacturer?: string
+          model?: string
+          owner?: string
+          updated_at?: string
+          year?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +338,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
